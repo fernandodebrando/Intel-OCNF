@@ -16,10 +16,10 @@ Os algoritmos estão seprados em 4 etapas de execução, que são:
 Para cada etapa contém um ou mais arquivos Python. Para executar os algoritmos, as etapas devem ser executadas em sequência. Porque a saída de um algoritmo é o pré-requisito para a execução do próximo. Cada etapa é descrita em detalhes abaixo.
 
 ## Coleta de estatísticas
-Esta etapa consiste em um único algoritmo ([statistics.ipynb] (./statistics.ipynb)). Este script analisa o arquivo "all_data.csv" e imprime as estatísticas de registros de ataque e benigno. Não é um pré-requisito para nenhuma outra etapa. Ele apenas fornece informações.
+Esta etapa consiste em um único algoritmo ([statistics.ipynb](./statistics.ipynb)). Este script analisa o arquivo "all_data.csv" e imprime as estatísticas de registros de ataque e benigno. Não é um pré-requisito para nenhuma outra etapa. Ele apenas fornece informações.
 
 ## Separação por tipo de Ataque
-Esta etapa consiste em um único algoritmo ([attack_type.ipynb] (./attack_type.ipynb)). Este script usa o arquivo "all_data.csv" para criar arquivos de ataque e então os salva no diretório "./attacks/". O conjunto de dados contém 12 tipos de ataque no total. Portanto, 12 arquivos CSV são criados para esses ataques. Em cada arquivo contêm 30% de ataque e 70% de registro benigno. Esta etapa é pré-requisito para as seguintes etapas.
+Esta etapa consiste em um único algoritmo ([attack_type.ipynb](./attack_type.ipynb)). Este script usa o arquivo "all_data.csv" para criar arquivos de ataque e então os salva no diretório "./attacks/". O conjunto de dados contém 12 tipos de ataque no total. Portanto, 12 arquivos CSV são criados para esses ataques. Em cada arquivo contêm 30% de ataque e 70% de registro benigno. Esta etapa é pré-requisito para as seguintes etapas.
 
 ## Seleção de Características
 Esta etapa realiza a seleção de características de duas formas, determinando as características mais importantes para cada tipo de ataque e para todos os tipos de ataque.
