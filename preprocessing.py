@@ -40,9 +40,7 @@ for i in range(len(csv_files)):
         while True:
             try:
                 line=file.readline()
-                if  line[0] in number:
-                    if " – " in str(line): 
-                        line=(str(line).replace(" – "," - "))
+                if  line[0] in number:                    
                     ths.write(str(line))
                 else:
                     continue                       
