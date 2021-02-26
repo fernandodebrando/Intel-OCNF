@@ -4,7 +4,7 @@ Algoritmos utilizados para dissertação apresentada  como  requisito  parcial p
 
 Para execução dos experimentos, é utilizadado o dataset [CIC-IDS2017](https://www.unb.ca/cic/datasets/ids-2017.html), os arquivos do conjunto de dados devem estar na pasta "CSVs" na raiz deste projeto.
 
-Para que as seguintes etapas funcionem, primeiro é feito um pré-processamento e agrupamento do dataset ([preprocessing](./preprocessing.py)), resultando em um únivo CSV denominado "all_data.csv".
+Para que as seguintes etapas funcionem, primeiro é feito um pré-processamento e agrupamento do dataset ([preprocessing](./preprocessing.ipynb)), resultando em um únivo CSV denominado "all_data.csv".
 
 Os algoritmos estão seprados em 4 etapas de execução, que são:
 1. [Coleta de estatísticas](#coleta-de-estatísticas)
