@@ -94,3 +94,5 @@ for i in range(len(csv_files)):
         df.to_csv('all_data.csv' ,index = False,header=False,mode="a")
     os.remove(str(i)+".csv")
     print("The pre-processing of the ",csv_files[i]," file is completed.\n")
+
+print("ok!")

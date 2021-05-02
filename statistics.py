@@ -51,5 +51,7 @@ graph(medium_labels,medium_values,"Numbers","Attacks Labels - Medium-number grou
 graph(small_labels,small_values,"Numbers","Attacks Labels - Small -number group")
 graph(labels,key,"Numbers","Attack and Benign Percentage")
 
+print("ok!")
+
 
 

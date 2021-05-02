@@ -2,6 +2,7 @@
 Algoritmos utilizados para dissertação apresentada  como  requisito  parcial para a obtenção do grau de Mestre em Ciência da Computação
 ###### Abaixo mais informações sobre como usar os algoritmos de implementação da orquestração inteligente de funções de rede em containeres para mitigação de anomalias
 
+# Traffic Categorizer and Mitigation Selection
 Para execução dos experimentos, é utilizadado o dataset [CIC-IDS2017](https://www.unb.ca/cic/datasets/ids-2017.html), os arquivos do conjunto de dados devem estar na pasta "CSVs" na raiz deste projeto.
 
 Para que as seguintes etapas funcionem, primeiro é feito um pré-processamento e agrupamento do dataset ([preprocessing](./preprocessing.ipynb)), resultando em um únivo CSV denominado "all_data.csv".
@@ -37,7 +38,7 @@ Esta etapa aplica os algoritmos de aprendizado de máquina ao conjuto de dados.
 
 ### Categorização do Tráfego de Acordo com os Tipos de Ataque
 O algoritmo [traffic_categorizer_for_attack_types](./traffic_categorizer_for_attack_types.ipynb) usa arquivos dos ataques localizados no diretório "attacks".
-As características usadas ​​são as 4 com maior peso para cada tipo de ataque, produzidos pelo algoritmo feature_selection_for_attack_types. O script traffic_categorizer_for_attack_types aplica 4 algoritmos de aprendizado de máquina para cada tipo de ataque e imprime os resultados dessas operações na tela e no arquivo "./attacks/results_traffic_categorizer_for_attack_types.csv". Ele também cria gráficos dos resultados e os imprime na tela e na pasta "./attacks/result_graph_traffic_categorizer_for_attack_types/".
+As características usadas ​​são as 4 com maior peso para cada tipo de ataque, produzidos pelo algoritmo feature_selection_for_attack_types. O script traffic_categorizer_for_attack_types aplica 4 algoritmos de aprendizado de máquina para cada tipo de ataque e imprime os resultados dessas operações na tela e no arquivo "./attacks/results/traffic_categorizer_for_attack_types.csv". Ele também cria gráficos dos resultados e os imprime na tela e na pasta "./attacks/results/graph_traffic_categorizer_for_attack_types/".
 
 ### Categorização do Tráfego de Acordo com os Tipos de Ataque (com 18 características)
 O algoritmo [traffic_categorizer_with_18_feature](./traffic_categorizer_with_18_feature.ipynb) usa o arquivo  "all_dada.csv" com todos os ataques.  O conjunto de características a ser usado consiste em combinar as 4 características com o maior peso de importância alcançado para cada ataque em "traffic_categorizer_for_attack_types". Assim, 4 características são obtidas de cada um dos 12 tipos de ataque, resultando em um conjunto de características composto por 48 atributos. Depois que as repetições são removidas, o número de características é 18.
@@ -47,4 +48,25 @@ Este script aplica 4 algoritmos de aprendizado de máquina ao arquivo "all_data.
 ### Categorização do Tráfego de Acordo com os Tipos de Ataque (com 7 características)
 O algoritmo [traffic_categorizer_with_7_feature](./traffic_categorizer_with_7_feature.ipynb) usa o arquivo  "all_dada.csv" com todos os ataques.  As características usadas ​​são as 7 características com maior peso, produzidos pelo script feature_selection_for_all_attack.
 Este script aplica 4 algoritmos de aprendizado de máquina ao arquivo "all_data.csv" e imprime os resultados dessas operações na tela e no arquivo "./attacks/results_traffic_categorizer_with_7_feature.csv". Ele também cria gráficos dos resultados e os imprime na tela e na pasta "./attacks/result_graph_traffic_categorizer_with_7_feature/".
+
+#  Mitigation Deployment and NS Life Cycle Management
+Para executar os experimentos do compomente Mitigation Deployment and NS Life Cycle Management é utilizado o OSM(Open Source Mano), implementando a integração com a NBI API baseada na especificação ETSI SOL005. Através desta integração é feito o deploy das VNFs e o gerencimento do ciclo de vida, desde a criação de uma instância até sua remoção.
+
+Como requisito, é necessário fazer a instalação do osmclient:
+```
+Installing OSM client
+
+# Fedora pre-requirements
+sudo dnf install python3-pip libcurl-devel gnutls-devel python-devel
+# Ubuntu 18.04 pre-requirements
+sudo apt-get install python3-pip libcurl4-openssl-dev libssl-dev
+sudo -H python -m pip install python-magic
+# Install OSM Information model
+sudo -H python -m pip install git+https://osm.etsi.org/gerrit/osm/IM --upgrade
+# Install OSM client from the git repo.
+# You can install the latest client from master branch in this way:
+sudo -H python -m pip install git+https://osm.etsi.org/gerrit/osm/osmclient
+```
+
+O algoritmo [mitigation_deployment](./osmclient/mitigation_deployment.ipynb) integra com a API do OSM e faz o deploy das NS. Para isto ele consome os recurso de operações de gerenciamento de descritores e pacotes NS, e perações de gerenciamento de instâncias NS.
 
