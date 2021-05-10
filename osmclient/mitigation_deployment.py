@@ -5,21 +5,6 @@ import yaml
 from prettytable import PrettyTable
 from dotenv import dotenv_values
 
-# hostname = "127.0.0.1"
-# user = 'admin'
-# password = 'admin'
-# project = 'admin'
-# kwargs = {}
-# if user is not None:
-#     kwargs['user'] = user
-# if password is not None:
-#     kwargs['password'] = password
-# if project is not None:
-#     kwargs['project'] = project
-# myclient = client.Client(host=hostname, sol005=True, **kwargs)
-# resp = myclient.vnfd.list()
-# print(yaml.safe_dump(resp, indent=4, default_flow_style=False))
-
 def auth():
     config = dotenv_values(".env")
     kwargs = {}
@@ -31,6 +16,11 @@ def auth():
         kwargs['project'] = config["PROJECT_OSM"] 
     myclient = client.Client(host=config["HOSTNAME_OSM"], sol005=True, **kwargs)
     return myclient
+
+def GetNSDescriptors():
+    client_osm = auth()
+    nsd = client_osm.nsd.list()
+    return nsd
 
 def GetNSDescriptor(name):
     client_osm = auth()
@@ -51,17 +41,33 @@ def CreatesNSInstance(nsd_name, nsr_name, account, description):
         ns = e
     return ns
 
-def NSLCManagement():
-    """ create(instantiate)(ns), scale(ns), delete(terminate)(ns), get_monitoring(
-    """
+def NSLCManagement_scale(ns_name, vnf_name, scaling_group, scale_in, scale_out):
     client_osm = auth()
-    # client_osm.ns.s
-    return ""
+    ns = ''
+    try:
+        client_osm.ns.scale_vnf(ns_name, vnf_name, scaling_group, scale_in, scale_out)
+    except NotFound as e:
+        ns = e
+    except ClientException as e:
+        ns = e
+    return ns
+
+def NSLCManagement_terminate(ns_name):
+    client_osm = auth()
+    ns = ''
+    try:
+        client_osm.ns.delete(ns_name)
+    except NotFound as e:
+        ns = e
+    except ClientException as e:
+        ns = e
+    return ns
+
     
 
 
 
-nsd = GetNSDescriptor('pingpong')
+nsd = NSLCManagement_terminate('pingpong')
 print(nsd)
 # if nsd['name']:
 #     ns = CreatesNSInstance(nsd['name'], nsd['name'], 'emu-vim', nsd['description'])

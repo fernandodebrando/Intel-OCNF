@@ -26,9 +26,9 @@ import math
 warnings.filterwarnings("ignore")
 
 
-result="./results/traffic_categorizer_for_attack_types.csv" #a CSV file is named in which the results are saved.
-csv_files=os.listdir("attacks")# CSV files names: #The names of the files in the attacks folder are taken and assigned to a list (csv_files).
-path=".\\attacks\\"
+result="./results/traffic_categorizer_for_attack_types.csv"
+csv_files=os.listdir("attacks")
+path="./attacks/"
 repetition=10
 
 
@@ -133,7 +133,7 @@ for j in csv_files:
         a.append(f1)
 
 
-    ml=["Naive Bayes","QDA","Random Forest","ID3","AdaBoost","MLP","Nearest Neighbors"]
+    ml=["Naive Bayes","QDA","Random Forest","Nearest Neighbors"]
     temp=0
     fig, axes = plt.subplots(nrows=2, ncols=4, figsize=(12, 6), sharey=True)
     for c in range(2):
