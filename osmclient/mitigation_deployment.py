@@ -41,6 +41,9 @@ def CreatesNSInstance(nsd_name, nsr_name, account, description):
         ns = e
     return ns
 
+def NSLCManagement_instantiante(nsd_name, nsr_name, account, description):
+    return CreatesNSInstance(nsd_name, nsr_name, account, description)
+
 def NSLCManagement_scale(ns_name, vnf_name, scaling_group, scale_in, scale_out):
     client_osm = auth()
     ns = ''
@@ -51,6 +54,12 @@ def NSLCManagement_scale(ns_name, vnf_name, scaling_group, scale_in, scale_out):
     except ClientException as e:
         ns = e
     return ns
+
+def NSLCManagement_update(ns_name):
+    return ''
+
+def NSLCManagement_heal(ns_name):
+    return ''
 
 def NSLCManagement_terminate(ns_name):
     client_osm = auth()
@@ -63,17 +72,12 @@ def NSLCManagement_terminate(ns_name):
         ns = e
     return ns
 
+
+
     
 
 
 
-nsd = NSLCManagement_terminate('pingpong')
-print(nsd)
-# if nsd['name']:
-#     ns = CreatesNSInstance(nsd['name'], nsd['name'], 'emu-vim', nsd['description'])
-#     print(ns)
 
 
-# client_osm = auth()
-# print(client_osm.vim.list())
 
