@@ -1,8 +1,6 @@
 from osmclient import client
 from osmclient.common.exceptions import ClientException
 from osmclient.common.exceptions import NotFound
-import yaml
-from prettytable import PrettyTable
 from dotenv import dotenv_values
 
 def auth():
